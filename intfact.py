@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import mariadb
 import sys
+from primes import primes
+from zeros import zeros
 
 def hits(ss, curr):
     curr.execute("SELECT * from zeros where mantissa=\""+str(ss) + "\"")
@@ -47,9 +49,9 @@ while _pos_ < pos:
     _p_ = pp[_pos_]
     _e_ = ee[_pos_]
     ss = _p_ + nn + _e_
-    if hits(ss, curr) > 1:
-        zero = get_zero(ss, curr)
-        print(zero)
+    prime = int(ss) in primes
+    zero = int(ss) in zeros
+    input([ss, "prime ", prime, "zero ", zero]) 
     _pos_ = _pos_ + 1
 f.close()
 g.close()
