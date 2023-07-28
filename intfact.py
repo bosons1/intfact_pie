@@ -46,11 +46,11 @@ while _pos_ < pos:
     ss = _p_ + nn + _e_
     prime = int(ss) in primes
     zero = int(ss) in zeros
-    print([ss, "prime ", prime, "zero ", zero]) 
     if prime == True and zero == True:
-        input([ss, "prime ", prime, "zero ", zero, "t", t]) 
+        print(["***>>>>>",ss, "prime ", prime, "zero ", zero, "t", t]) 
         t = 1
     else:
+        print([ss, "prime ", prime, "zero ", zero]) 
         t = 1 - t
     _pos_ = _pos_ + 1
 f.close()
