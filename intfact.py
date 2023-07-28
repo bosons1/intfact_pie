@@ -24,8 +24,7 @@ g.read(2)
 c = 0
 l = len(num)
 pos = 0
-MAGIC=3
-while c < MAGIC*lb:
+while c < lb:
     pp = str(f.read(1))
     ee = str(g.read(1))
     nn = num[pos % l]
