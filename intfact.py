@@ -9,16 +9,10 @@ def hits(ss, curr):
     res = curr.fetchall()
     return len(res)
 
-def get_zero(ss, curr):
-    curr.execute("SELECT mantissa,frac from zeros where mantissa=\""+str(ss)+"\"")
-    res = curr.fetchall()
-    return res
-
 conn = mariadb.connect(user="root", password="", host="localhost", port=3306, database="intfact")
 curr = conn.cursor()
 num=str(sys.argv[1])
-bnum = str(bin(int(num))[2:])
-lb = len(bnum)
+lb = sum(map(int, num)) + 10*num.count("0")
 f=open("./pi.txt","r")
 g=open("./e.txt","r")
 f.read(2)
@@ -44,6 +38,7 @@ g.read(2)
 pp = str(f.read(pos))
 ee = str(g.read(pos))[::-1]
 _pos_ = 0
+t = 1
 while _pos_ < pos:
     nn = num[_pos_ % l]
     _p_ = pp[_pos_]
@@ -51,7 +46,12 @@ while _pos_ < pos:
     ss = _p_ + nn + _e_
     prime = int(ss) in primes
     zero = int(ss) in zeros
-    input([ss, "prime ", prime, "zero ", zero]) 
+    print([ss, "prime ", prime, "zero ", zero, "t", t]) 
+    if prime == True and zero == True:
+        input([ss, "prime ", prime, "zero ", zero, "t", t]) 
+        t = 1
+    else:
+        t = 1 - t
     _pos_ = _pos_ + 1
 f.close()
 g.close()
